@@ -1,0 +1,81 @@
+<h2>My Heroes</h2>
+{{hero1}}
+<input [(ngModel)]="hero1" placeholder="name"/>
+<br/>
+{{hero.name}}
+<input [(ngModel)]="hero.name" placeholder="name"/>
+{{hero}}
+<ul>
+    <li *ngFor="let hero of heroes" (click)="onSelect(hero)">{{hero.name}}</li>
+</ul>  
+<div *ngIf="selectedHero">
+
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+    </label>
+  </div>
+
+</div>
+
+<ul class="heroes">
+  <li *ngFor="let hero of heroes2"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+
+<hr/>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+<hr/>
+With Injection
+ <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+
+<hr/>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes2">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button class="delete" title="delete hero" (click)="delete(hero)">X</button>
+  </li>
+</ul>
+
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button class="delete" title="delete hero" (click)="delete1(hero)">X</button>
+  </li>
+</ul>
+
+<hr/>
+Json File
+<ul class="heroes">
+  <li *ngFor="let hero of heroes3">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+    <button class="delete" title="delete hero" (click)="delete1(hero)">x</button>
+  </li>
+</ul>
+<hr/>
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+</div>
